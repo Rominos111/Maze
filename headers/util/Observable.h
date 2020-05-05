@@ -50,14 +50,14 @@ public:
      *
      * @return Changé
      */
-    bool hasChanged();
+    bool hasChanged() const;
 
     /**
      * Compte les observers
      *
      * @return Nombre d'observers
      */
-    int countObservers();
+    int countObservers() const;
 
 protected:
     /**

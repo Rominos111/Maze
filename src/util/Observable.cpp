@@ -39,11 +39,11 @@ void Observable::notifyObservers(const std::string msg) {
     clearChanged();
 }
 
-bool Observable::hasChanged() {
+bool Observable::hasChanged() const {
     return changed;
 }
 
-int Observable::countObservers() {
+int Observable::countObservers() const {
     return observers.size();
 }
 

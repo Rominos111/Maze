@@ -13,14 +13,13 @@
 template<typename T>
 class UnionFind {
 public:
-    // NOLINTNEXTLINE : const
     /**
      * Constructeur
      *
      * @param initContent Tableau pour l'initialisation
      * @param size Taille du tableau
      */
-    UnionFind(const T initContent[], const size_t size);
+    UnionFind(const T initContent[], size_t size);
 
     /**
      * Constructeur
@@ -39,7 +38,6 @@ public:
      */
     ~UnionFind();
 
-    // NOLINTNEXTLINE : const
     /**
      * Union de deux éléments
      *
@@ -48,9 +46,8 @@ public:
      *
      * @throws invalid_argument Élément non trouvé
      */
-    void unite(const T elem1, const T elem2);
+    void unite(T elem1, T elem2);
 
-    // NOLINTNEXTLINE : const
     /**
      * Recherche du représentant d'un élément
      *
@@ -60,15 +57,14 @@ public:
      *
      * @throws invalid_argument Élément non trouvé
      */
-    T find(const T elem);
+    T find(T elem);
 
-    // NOLINTNEXTLINE : const
     /**
      * Ajoute un élément
      *
      * @param elem Élément
      */
-    void add(const T elem);
+    void add(T elem);
 
     /**
      * Override '<<' pour stdout
