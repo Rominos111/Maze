@@ -29,12 +29,19 @@ void UnionFind<T>::unite(const T elem1, const T elem2) {
 }
 
 template<typename T>
-T UnionFind<T>::find(const T elem) {
-    T repr = reprMap[elem];
+T UnionFind<T>::find(const T elem)  {
+    T repr;
+
+    try {
+        repr = reprMap.at(elem);
+    }
+    catch (std::out_of_range &e) {
+        throw std::invalid_argument("Union-Find : elem not found");
+    }
 
     if (repr != elem) {
         repr = find(repr);
-        reprMap[elem] = repr;
+        reprMap.at(elem) = repr;
     }
 
     return repr;

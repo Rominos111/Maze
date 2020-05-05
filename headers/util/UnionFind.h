@@ -45,6 +45,8 @@ public:
      *
      * @param elem1 Élément 1 à unir
      * @param elem2 Élément 2 à unir
+     *
+     * @throws invalid_argument Élément non trouvé
      */
     void unite(const T elem1, const T elem2);
 
@@ -55,6 +57,8 @@ public:
      * @param elem Élément
      *
      * @return Représentant
+     *
+     * @throws invalid_argument Élément non trouvé
      */
     T find(const T elem);
 
