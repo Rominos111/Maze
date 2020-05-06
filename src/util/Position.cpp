@@ -79,5 +79,15 @@ void Position<T>::set(T x, T y) {
     setY(y);
 }
 
+template<typename T>
+bool Position<T>::operator==(const Position &pos) const {
+    return (x == pos.x && y == pos.y);
+}
+
+template<typename T>
+bool Position<T>::operator!=(const Position &pos) const {
+    return !(*this == pos);
+}
+
 template class Position<int>;
 template class Position<size_t>;

@@ -104,6 +104,24 @@ public:
      * @param y Y
      */
     void set(T x, T y);
+
+    /**
+     * Opérateur d'égalité
+     *
+     * @param pos Autre position
+     *
+     * @return Positions égales
+     */
+    bool operator==(const Position& pos) const;
+
+    /**
+     * Opérateur de différence
+     *
+     * @param pos Autre position
+     *
+     * @return Positions différentes
+     */
+    bool operator!=(const Position& pos) const;
 private:
     /**
      * Coordonnées

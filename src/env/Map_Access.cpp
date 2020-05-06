@@ -1,4 +1,4 @@
-#include "../../headers/env/Map.h"
+#include "../../headers/env/Map_Access.h"
 
 Map::Access::Access(Map& parent, Position<int> pos) : parent(parent), pos(pos) {}
 

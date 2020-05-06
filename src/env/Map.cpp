@@ -49,3 +49,11 @@ size_t Map::getNbRows() const {
 size_t Map::getNbCols() const {
     return size.getCol();
 }
+
+Map_Iterator Map::begin() {
+    return Map_Iterator(this);
+}
+
+Map_Iterator Map::end() {
+    return Map_Iterator(nullptr);
+}
