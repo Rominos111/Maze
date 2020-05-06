@@ -11,12 +11,16 @@ int Map_Iterator::getCol() const {
     return pos.getCol();
 }
 
+Position<int> Map_Iterator::getPos() const {
+    return pos;
+}
+
 Cell *Map_Iterator::getCell() const {
     if (map == nullptr) {
         throw std::invalid_argument("Pointeur null");
     }
 
-    return map->get(pos);
+    return map->getCell(pos);
 }
 
 void Map_Iterator::next() {
@@ -27,12 +31,12 @@ void Map_Iterator::next() {
     int row = pos.getRow();
     int col = pos.getCol() + 1;
 
-    if (col == map->getNbCols()) {
+    if (col == (int) map->getNbCols()) {
         col = 0;
         row ++;
     }
 
-    if (row == map->getNbRows()) {
+    if (row == (int) map->getNbRows()) {
         row = 0;
         map = nullptr;
     }
@@ -64,4 +68,3 @@ bool Map_Iterator::operator==(const Map_Iterator &iter) const {
 bool Map_Iterator::operator!=(const Map_Iterator &iter) const {
     return !(*this == iter);
 }
-

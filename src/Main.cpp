@@ -10,7 +10,7 @@ int main(int argc, char **argv) {
     Map map(3, 5);
 
     for (auto iter=map.begin(); iter!=map.end(); iter++) {
-        std::cout << iter.getRow() << ':' << iter.getCol() << ' ' << std::endl;
+        std::cout << iter.getPos() << std::endl;
     }
 
     /*

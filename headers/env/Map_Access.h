@@ -14,7 +14,7 @@ public:
      * @param parent Map parente
      * @param pos Position
      */
-    Access(Map& parent, Position<int> pos);
+    Access(Map& parent, const Position<int>& pos);
 
     /**
      * Surcharge du getter de l'opérateur <code>()</code><br>
@@ -31,7 +31,7 @@ public:
      *
      * @return Cellule
      */
-    Cell& operator = (const Cell* other);
+    Access& operator = (const Cell* other);
 
     /**
      * Surcharge du setter de l'opérateur <code>()</code> par valeur<br>
@@ -40,7 +40,7 @@ public:
      *
      * @return Cellule
      */
-    Cell& operator = (const Cell& other);
+    Access& operator = (const Cell& other);
 
 private:
     /**

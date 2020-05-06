@@ -2,8 +2,10 @@
 #define MAZE_MAP_ITERATOR_H
 
 #include "Map.fwd.h"
-#include "../util/Position.h"
+#include "MapElem.h"
 #include "Cell.h"
+#include "Wall.h"
+#include "../util/Position.h"
 
 /**
  * Itérateur de Map
@@ -30,6 +32,13 @@ public:
      * @return Colonne
      */
     int getCol() const;
+
+    /**
+     * Getter de position
+     *
+     * @return Position
+     */
+    Position<int> getPos() const;
 
     /**
      * Getter de cellule

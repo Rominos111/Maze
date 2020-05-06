@@ -1,19 +1,21 @@
 #include "../../headers/env/Map_Access.h"
 
-Map::Access::Access(Map& parent, Position<int> pos) : parent(parent), pos(pos) {}
+Map::Access::Access(Map& parent, const Position<int> &pos) : parent(parent), pos(pos) {}
 
-Map::Access Map::operator()(Position<int> pos)  {
+Map::Access Map::operator()(const Position<int> &pos)  {
     return Access(*this, pos);
 }
 
 Map::Access::operator Cell *() const {
-    return parent.get(pos);
+    return parent.getCell(pos);
 }
 
-Cell &Map::Access::operator=(const Cell *other) {
-    return parent.set(pos, other);
+Map::Access& Map::Access::operator=(const Cell *other) {
+    parent.setCell(pos, other);
+    return *this;
 }
 
-Cell &Map::Access::operator=(const Cell &other) {
-    return parent.set(pos, other);
+Map::Access& Map::Access::operator=(const Cell &other) {
+    parent.setCell(pos, other);
+    return *this;
 }

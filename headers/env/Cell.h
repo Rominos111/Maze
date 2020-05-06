@@ -1,20 +1,11 @@
 #ifndef MAZE_CELL_H
 #define MAZE_CELL_H
 
-enum CellType {
-    EMPTY,
-    WALL,
-    CELL
-};
+#include "MapElem.h"
 
-
-
-class Cell {
+class Cell : public MapElem {
 public:
-
-private:
-    CellType type;
+    Cell();
 };
-
 
 #endif

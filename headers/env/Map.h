@@ -3,9 +3,11 @@
 
 #include <vector>
 
-#include "Cell.h"
 #include "Map.fwd.h"
 #include "Map_Iterator.h"
+#include "MapElem.h"
+#include "Cell.h"
+#include "Wall.h"
 
 #include "../util/Observable.h"
 #include "../util/Position.h"
@@ -21,7 +23,7 @@ public:
      * @param nbCols Nombre de lignes
      * @param nbRows Nombre de colonnes
      */
-    Map(size_t nbCols, size_t nbRows);
+    Map(size_t nbRows, size_t nbCols);
 
     /**
      * Destructeur
@@ -32,26 +34,6 @@ public:
      * Réinitialise la map
      */
     void reset();
-
-    /**
-     * Si une position p pour une cellule est valide ou non
-     *
-     * @param p Position
-     *
-     * @return Valide ou non
-     */
-    bool isCellPosValid(Position<int> p) const;
-
-    /**
-     * Récupère un pointeur vers une cellule
-     *
-     * @param pos Position
-     *
-     * @return Pointeur vers la cellule
-     *
-     * @throws range_error Si position hors de la map
-     */
-    Cell* get(Position<int> pos) const;
 
     /**
      * Récupère le nombre de lignes
@@ -68,6 +50,26 @@ public:
     size_t getNbCols() const;
 
     /**
+     * Si une position p pour une cellule est valide ou non
+     *
+     * @param p Position
+     *
+     * @return Valide ou non
+     */
+    bool isCellPosValid(const Position<int>& p) const;
+
+    /**
+     * Récupère un pointeur vers une cellule
+     *
+     * @param pos Position
+     *
+     * @return Pointeur vers la cellule
+     *
+     * @throws range_error Si position hors de la map
+     */
+    Cell* getCell(const Position<int> &pos) const;
+
+    /**
      * Set une case à partir d'un pointeur vers une cellule
      *
      * @param pos Position
@@ -77,7 +79,7 @@ public:
      *
      * @throws range_error Si position hors de la map
      */
-    Cell& set(Position<int> pos, const Cell* other);
+    Cell& setCell(const Position<int> &pos, const Cell* other);
 
     /**
      * Set une case à partir d'une cellule
@@ -89,7 +91,7 @@ public:
      *
      * @throws range_error Si position hors de la map
      */
-    Cell& set(Position<int> pos, Cell other);
+    Cell& setCell(const Position<int> &pos, Cell other);
 
     /**
      * Gestion des accès pour la surcharge de l'opérateur <code>()</code>
@@ -105,7 +107,7 @@ public:
      *
      * @return Access
      */
-    Access operator () (Position<int> pos);
+    Access operator () (const Position<int>& pos);
 
     /**
      * Début de l'itérateur
@@ -134,7 +136,7 @@ private:
     /**
      * Contenu
      */
-    std::vector<std::vector<Cell*>> content;
+    std::vector<std::vector<MapElem*>> content;
 };
 
 #endif
