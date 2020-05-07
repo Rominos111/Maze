@@ -1,9 +1,6 @@
-#include <SFML/Window.hpp>
-#include <SFML/Graphics.hpp>
-
-#include <iostream>
 #include "../headers/env/Map.h"
 #include "../headers/view/MapTerm.h"
+#include "../headers/view/MazeWindow.h"
 
 int main(int argc, char **argv) {
     setenv("DISPLAY", "127.0.0.1:0", true);
@@ -12,30 +9,15 @@ int main(int argc, char **argv) {
 
     displayMapToTerm(&map);
 
-    /*
-    std::cout << "test 1" << std::endl;
+    MazeWindow window(&map, Position<size_t>(800, 600), "test");
 
-    sf::RenderWindow window(sf::VideoMode(200, 200), "SFML works!");
-    sf::CircleShape shape(100.f);
-    shape.setFillColor(sf::Color::Green);
+    int code = window.run();
 
-    while (window.isOpen())
-    {
-        sf::Event event;
-        while (window.pollEvent(event))
-        {
-            if (event.type == sf::Event::Closed)
-                window.close();
-        }
-
-        window.clear();
-        window.draw(shape);
-        window.display();
+    if (code != EXIT_SUCCESS) {
+        std::cout << "erreur fenêtre" << std::endl;
     }
-     */
 
-    return EXIT_SUCCESS;
+    return code;
 }
 
 // EXIT_FAILURE
-// https://stackoverflow.com/questions/9386266/overloading-the-operator-to-increment-an-iterator
