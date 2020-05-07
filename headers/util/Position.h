@@ -51,54 +51,54 @@ public:
      *
      * @return X
      */
-    T getX() const;
+    [[nodiscard]] T getX() const;
 
     /**
      * Récupère la coordonnée y
      *
      * @return Y
      */
-    T getY() const;
+    [[nodiscard]] T getY() const;
 
     /**
      * Alias de getX
      */
-    T getWidth() const;
+    [[nodiscard]] T getWidth() const;
 
     /**
      * Alias de getY
      */
-    T getHeight() const;
+    [[nodiscard]] T getHeight() const;
 
     /**
      * Alias de getX
      */
-    T getRow() const;
+    [[nodiscard]] T getRow() const;
 
     /**
      * Alias de getY
      */
-    T getCol() const;
+    [[nodiscard]] T getCol() const;
 
     /**
      * Alias de getX
      */
-    T getRows() const;
+    [[nodiscard]] T getRows() const;
 
     /**
      * Alias de getY
      */
-    T getCols() const;
+    [[nodiscard]] T getCols() const;
 
     /**
      * Alias de getX
      */
-    T getNbRows() const;
+    [[nodiscard]] T getNbRows() const;
 
     /**
      * Alias de getY
      */
-    T getNbCols() const;
+    [[nodiscard]] T getNbCols() const;
 
     /**
      * Setter de x
@@ -160,7 +160,7 @@ public:
      *
      * @return Positions égales
      */
-    bool operator==(const Position& pos) const;
+    [[nodiscard]] bool operator==(const Position& pos) const;
 
     /**
      * Opérateur de différence
@@ -169,7 +169,7 @@ public:
      *
      * @return Positions différentes
      */
-    bool operator!=(const Position& pos) const;
+    [[nodiscard]] bool operator!=(const Position& pos) const;
 
     /**
      * Ajoute une position
@@ -197,7 +197,7 @@ public:
      *
      * @return Position
      */
-    static Position<T> add(const Position<T> &p1, const Position<T> &p2);
+    [[nodiscard]] static Position<T> add(const Position<T> &p1, const Position<T> &p2);
 
     /**
      * Ajoute deux positions <br>
@@ -207,7 +207,7 @@ public:
      *
      * @return Position
      */
-    Position<T> operator+(const Position &pos) const;
+    [[nodiscard]] Position<T> operator+(const Position &pos) const;
 
     /**
      * Soustrait une position
@@ -235,7 +235,7 @@ public:
      *
      * @return Position
      */
-    static Position<T> sub(const Position<T> &p1, const Position<T> &p2);
+    [[nodiscard]] static Position<T> sub(const Position<T> &p1, const Position<T> &p2);
 
     /**
      * Soustrait deux positions <br>
@@ -245,7 +245,7 @@ public:
      *
      * @return Position
      */
-    Position<T> operator-(const Position& pos) const;
+    [[nodiscard]] Position<T> operator-(const Position& pos) const;
 
     /**
      * Multiplie la position
@@ -276,7 +276,7 @@ public:
      * @return Position
      */
     template<typename D>
-    static Position<T> mult(const Position<T> &p, const D val);
+    [[nodiscard]] static Position<T> mult(const Position<T> &p, const D val);
 
     /**
      * Multiplie la position
@@ -286,7 +286,7 @@ public:
      * @return Position
      */
     template<typename D>
-    Position<T> operator*(D val) const;
+    [[nodiscard]] Position<T> operator*(D val) const;
 
     /**
      * Divise la position
@@ -317,7 +317,7 @@ public:
      * @return Position
      */
     template<typename D>
-    static Position<T> div(const Position<T> &p, const D val);
+    [[nodiscard]] static Position<T> div(const Position<T> &p, const D val);
 
     /**
      * Divise la position
@@ -327,7 +327,7 @@ public:
      * @return Position
      */
     template<typename D>
-    Position<T> operator/(D val) const;
+    [[nodiscard]] Position<T> operator/(D val) const;
 
 private:
     /**

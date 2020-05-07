@@ -61,14 +61,14 @@ public:
      *
      * @return Nombre de lignes
      */
-    size_t getNbRows() const;
+    [[nodiscard]] size_t getNbRows() const;
 
     /**
      * Récupère le nombre de colonnes
      *
      * @return Nombre de colonnes
      */
-    size_t getNbCols() const;
+    [[nodiscard]] size_t getNbCols() const;
 
     /**
      * Si une position p pour une cellule est valide ou non
@@ -77,7 +77,7 @@ public:
      *
      * @return Valide ou non
      */
-    bool isCellPosValid(const Position<float>& pos) const;
+    [[nodiscard]] bool isCellPosValid(const Position<float>& pos) const;
 
     /**
      * Récupère un pointeur vers une cellule
@@ -88,7 +88,7 @@ public:
      *
      * @throws range_error Si position hors de la map
      */
-    Cell* getCell(const Position<int> &pos) const;
+    [[nodiscard]] Cell* getCell(const Position<int> &pos) const;
 
     /**
      * Set une cellule à partir d'un pointeur vers une cellule
@@ -122,7 +122,7 @@ public:
      *
      * @return Valide ou non
      */
-    bool isWallPosValid(const Position<float>& pos) const;
+    [[nodiscard]] bool isWallPosValid(const Position<float>& pos) const;
 
     /**
      * Récupère un pointeur vers un mur
@@ -133,7 +133,7 @@ public:
      *
      * @throws range_error Si position hors de la map
      */
-    Wall* getWall(const Position<float> &pos);
+    [[nodiscard]] Wall* getWall(const Position<float> &pos);
 
     /**
      * Set un mur à partir d'un pointeur vers un mur
@@ -161,21 +161,21 @@ public:
      *
      * @return Access
      */
-    Access operator () (const Position<int>& pos);
+    [[nodiscard]] Access operator () (const Position<int>& pos);
 
     /**
      * Début de l'itérateur
      *
      * @return Itérateur
      */
-    Map_Iterator begin();
+    [[nodiscard]] Map_Iterator begin();
 
     /**
      * Fin de l'itérateur
      *
      * @return Itérateur
      */
-    Map_Iterator end();
+    [[nodiscard]] Map_Iterator end();
 private:
     /**
      * Récupère le vrai nombre de lignes
@@ -213,7 +213,7 @@ private:
     /**
      * Contenu
      */
-    std::vector<std::vector<MapElem*>> content;
+    std::vector<std::vector<void*>> content;
 };
 
 #endif

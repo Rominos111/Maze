@@ -24,21 +24,21 @@ public:
      *
      * @return Ligne
      */
-    int getRow() const;
+    [[nodiscard]] int getRow() const;
 
     /**
      * Getter de colonne
      *
      * @return Colonne
      */
-    int getCol() const;
+    [[nodiscard]] int getCol() const;
 
     /**
      * Getter de position
      *
      * @return Position
      */
-    Position<int> getPos() const;
+    [[nodiscard]] Position<int> getPos() const;
 
     /**
      * Getter de cellule
@@ -47,14 +47,14 @@ public:
      *
      * @throws invalid_argument Si la map est null, donc si itérateur de fin
      */
-    Cell* getCell() const;
+    [[nodiscard]] Cell* getCell() const;
 
     /**
      * Nouvelle ligne ou non
      *
      * @return Nouvelle ligne
      */
-    bool isNewLine() const;
+    [[nodiscard]] bool isNewLine() const;
 
     /**
      * Passe au suivant
@@ -84,7 +84,7 @@ public:
      *
      * @return Si itérateurs égaux
      */
-    bool operator==(const Map_Iterator& iter) const;
+    [[nodiscard]] bool operator==(const Map_Iterator& iter) const;
 
     /**
      * Opérateur de différence
@@ -93,7 +93,7 @@ public:
      *
      * @return Si itérateurs différents
      */
-    bool operator!=(const Map_Iterator& iter) const;
+    [[nodiscard]] bool operator!=(const Map_Iterator& iter) const;
 
 private:
     /**

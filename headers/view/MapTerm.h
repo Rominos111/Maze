@@ -5,6 +5,11 @@
 
 #include <iostream>
 
+/**
+ * Affiche la map sur cout
+ *
+ * @param map Map à afficher
+ */
 void displayMapToTerm(Map *map);
 
 #endif

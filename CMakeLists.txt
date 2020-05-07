@@ -34,7 +34,7 @@ set(SOURCE_FILES
         src/env/Wall.cpp
 
         src/view/MapTerm.cpp
-)
+        src/view/MazeWindow.cpp)
 
 set(HEADER_FILES
         headers/util/UnionFind.h
@@ -53,7 +53,7 @@ set(HEADER_FILES
         headers/env/Wall.h
 
         headers/view/MapTerm.h
-)
+        headers/view/MazeWindow.h)
 
 add_executable(Maze ${SOURCE_FILES} ${HEADER_FILES})
 

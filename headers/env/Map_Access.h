@@ -22,7 +22,7 @@ public:
      *
      * @return Valeur en <code>(row, col)</code>
      */
-    operator Cell* () const;
+    [[nodiscard]] operator Cell* () const;
 
     /**
      * Surcharge du setter de l'opérateur <code>()</code> par référence<br>

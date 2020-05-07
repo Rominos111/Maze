@@ -6,7 +6,7 @@ Map::Access Map::operator()(const Position<int> &pos)  {
     return Access(*this, pos);
 }
 
-Map::Access::operator Cell *() const {
+Map::Access::operator Cell* () const {
     return parent.getCell(pos);
 }
 
