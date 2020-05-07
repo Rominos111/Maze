@@ -34,7 +34,7 @@ set(SOURCE_FILES
         src/env/Wall.cpp
 
         src/view/MapTerm.cpp
-        src/view/MazeWindow.cpp)
+        src/view/MazeWindow.cpp src/generation/Kruskal.cpp)
 
 set(HEADER_FILES
         headers/util/UnionFind.h
@@ -53,7 +53,10 @@ set(HEADER_FILES
         headers/env/Wall.h
 
         headers/view/MapTerm.h
-        headers/view/MazeWindow.h)
+        headers/view/MazeWindow.h headers/generation/Kruskal.h)
+
+add_subdirectory(lib/effolkronium)
+
 
 add_executable(Maze ${SOURCE_FILES} ${HEADER_FILES})
 

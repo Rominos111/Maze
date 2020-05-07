@@ -19,6 +19,11 @@ public:
     ~Wall() override;
 
     /**
+     * Casse le mur
+     */
+    void breakWall();
+
+    /**
      * Si le mur est plein ou non
      *
      * @return Plein ou non

@@ -8,6 +8,10 @@ Wall::Wall() : MapElem(), filled(true) {
 
 Wall::~Wall() = default;
 
+void Wall::breakWall() {
+    filled = false;
+}
+
 bool Wall::isFilled() const {
     return filled;
 }
