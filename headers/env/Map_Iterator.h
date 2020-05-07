@@ -50,6 +50,13 @@ public:
     Cell* getCell() const;
 
     /**
+     * Nouvelle ligne ou non
+     *
+     * @return Nouvelle ligne
+     */
+    bool isNewLine() const;
+
+    /**
      * Passe au suivant
      *
      * @throws invalid_argument Si la map est null, donc si itérateur de fin

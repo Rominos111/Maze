@@ -54,6 +54,26 @@ T Position<T>::getCol() const {
 }
 
 template<typename T>
+T Position<T>::getRows() const {
+    return getX();
+}
+
+template<typename T>
+T Position<T>::getCols() const {
+    return getY();
+}
+
+template<typename T>
+T Position<T>::getNbRows() const {
+    return getX();
+}
+
+template<typename T>
+T Position<T>::getNbCols() const {
+    return getY();
+}
+
+template<typename T>
 void Position<T>::setX(T nx) {
     x = nx;
 }

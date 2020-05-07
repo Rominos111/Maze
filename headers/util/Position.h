@@ -81,6 +81,26 @@ public:
     T getCol() const;
 
     /**
+     * Alias de getX
+     */
+    T getRows() const;
+
+    /**
+     * Alias de getY
+     */
+    T getCols() const;
+
+    /**
+     * Alias de getX
+     */
+    T getNbRows() const;
+
+    /**
+     * Alias de getY
+     */
+    T getNbCols() const;
+
+    /**
      * Setter de x
      *
      * @param nx X

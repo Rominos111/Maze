@@ -23,6 +23,10 @@ Cell *Map_Iterator::getCell() const {
     return map->getCell(pos);
 }
 
+bool Map_Iterator::isNewLine() const {
+    return (pos.getCol() == 0 && pos.getRow() != 0);
+}
+
 void Map_Iterator::next() {
     if (map == nullptr) {
         throw std::invalid_argument("Pointeur null");
@@ -37,7 +41,6 @@ void Map_Iterator::next() {
     }
 
     if (row == (int) map->getNbRows()) {
-        row = 0;
         map = nullptr;
     }
 

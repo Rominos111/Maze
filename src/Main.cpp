@@ -3,15 +3,14 @@
 
 #include <iostream>
 #include "../headers/env/Map.h"
+#include "../headers/view/MapTerm.h"
 
 int main(int argc, char **argv) {
     setenv("DISPLAY", "127.0.0.1:0", true);
 
     Map map(3, 5);
 
-    for (auto iter=map.begin(); iter!=map.end(); iter++) {
-        std::cout << iter.getPos() << std::endl;
-    }
+    displayMapToTerm(&map);
 
     /*
     std::cout << "test 1" << std::endl;

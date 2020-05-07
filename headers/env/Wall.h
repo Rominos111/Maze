@@ -6,6 +6,11 @@
 class Wall : public MapElem {
 public:
     Wall();
+    ~Wall();
+    [[nodiscard]] bool isFilled() const;
+
+private:
+    bool filled;
 };
 
 #endif

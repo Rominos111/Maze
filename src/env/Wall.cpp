@@ -1,6 +1,14 @@
 #include "../../headers/env/Wall.h"
 
-Wall::Wall() : MapElem() {
+#include <iostream>
+
+Wall::Wall() : MapElem(), filled(true) {
     this->TYPE = WALL;
+}
+
+Wall::~Wall() = default;
+
+bool Wall::isFilled() const {
+    return filled;
 }
 
