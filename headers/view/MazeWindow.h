@@ -1,6 +1,8 @@
 #ifndef MAZE_MAZEWINDOW_H
 #define MAZE_MAZEWINDOW_H
 
+#define BACKGROUND_COLOR sf::Color::Red
+
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
 

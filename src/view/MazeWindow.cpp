@@ -52,13 +52,38 @@ void MazeWindow::update() {
 }
 
 void MazeWindow::render() {
-    sf::CircleShape shape(100.f);
-    shape.setFillColor(sf::Color::Green);
+    window.clear(BACKGROUND_COLOR);
 
-    shape.setPosition(200, 300);
+    float windowWidth = window.getSize().x;
+    float windowHeight = window.getSize().y;
 
-    window.clear();
-    window.draw(shape);
+    float cellWidth = windowWidth / (float) map->getNbCols();
+    float cellHeight = windowHeight / (float) map->getNbRows();
+
+    sf::RectangleShape shape(sf::Vector2f(cellWidth, cellHeight));
+
+    shape.setOutlineThickness(0);
+
+    for (auto iter=map->begin(); iter!=map->end(); iter++) {
+        Position<float> cellScreenPos = Position<float>(
+                (float) iter.getCol() * cellWidth,
+                (float) iter.getRow() * cellHeight
+                );
+
+        shape.setPosition(cellScreenPos.getX(), cellScreenPos.getY());
+        shape.setFillColor(sf::Color::Green);
+
+        /*
+        sf::Vertex line[2];
+        line[0].position = sf::Vector2f(10, 0);
+        line[0].color  = sf::Color::Red;
+        line[1].position = sf::Vector2f(20, 0);
+        line[1].color = sf::Color::Red;
+         */
+
+        window.draw(shape);
+    }
+
     window.display();
 }
 
