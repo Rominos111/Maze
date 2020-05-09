@@ -1,3 +1,5 @@
-Itérateur murs, murs verticaux, murs horizontaux
+Génération
 
-Généraion
+Affichage murs
+
+Affichage couleur cellules

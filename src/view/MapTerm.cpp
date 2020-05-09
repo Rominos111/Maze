@@ -3,57 +3,89 @@
 #include "../../headers/env/Cell.h"
 #include "../../headers/env/Wall.h"
 
+void displayBorderRow(Map *map, bool up) {
+    if (up) {
+        std::cout << "╔";
+    }
+    else {
+        std::cout << "╚";
+    }
+
+    for (unsigned int i=0; i<map->getNbCols()-1; i++) {
+        std::cout << "────";
+    }
+
+    std::cout << "───";
+
+    if (up) {
+        std::cout << "╗";
+    }
+    else {
+        std::cout << "╝";
+    }
+
+    std::cout << std::endl;
+}
+
 void displayMapToTerm(Map *map) {
-    for (unsigned int row=0; row < map->getNbRows(); row++) {
-        for (unsigned int col=0; col < map->getNbCols(); col++) {
-            Position<int> pos(row, col);
-            Cell *cell = map->getCell(pos);
+    auto iterCell = map->iterCell();
+    auto iterWallHoriz = map->iterWallHoriz();
+    auto iterWallVert = map->iterWallVert();
 
-            std::cout << "O ";
+    displayBorderRow(map, true);
 
-            Position<float> wallPos(pos);
-            wallPos += Position<float>(0, 0.5);
+    while (iterCell != map->iterEnd()) {
+        if (iterCell.getCol() == 0) {
+            std::cout << "│";
+        }
 
-            if (map->isWallPosValid(wallPos)) {
-                Wall *wall = map->getWall(wallPos);
+        std::cout << " # ";
 
-                if (wall->isFilled()) {
-                    std::cout << '-';
-                }
-                else {
-                    std::cout << ' ';
-                }
+        if ((unsigned int) iterCell.getCol() != map->getNbCols()-1) {
+            Wall *wall = (Wall*) iterWallVert.get();
+            iterWallVert ++;
 
+            if (wall->isFilled()) {
+                std::cout << "│";
+            }
+            else {
                 std::cout << ' ';
             }
         }
 
-        std::cout << std::endl;
+        iterCell ++;
 
-        for (unsigned int col=0; col < map->getNbCols(); col++) {
-            Position<float> pos(row, col);
+        if (iterCell.isNewLine()) {
+            std::cout << "│" << std::endl;
 
-            Position<float> vertPos   = pos + Position<float>(0.5, 0);
-            Position<float> horizPos = pos + Position<float>(0, 0.5);
+            if (iterCell != map->iterEnd()) {
+                std::cout << "│";
 
-            if (map->isWallPosValid(vertPos)) {
-                Wall *wall = map->getWall(vertPos);
+                do {
+                    Wall *wall = (Wall*) iterWallHoriz.get();
 
-                if (wall->isFilled()) {
-                    std::cout << "|";
+                    if (wall->isFilled()) {
+                        std::cout << "───";
+                    }
+                    else {
+                        std::cout << "   ";
+                    }
+
+                    iterWallHoriz++;
+
+                    if (iterWallHoriz.isNewLine()) {
+                        std::cout << "│";
+                    }
+                    else {
+                        std::cout << "╬";
+                    }
                 }
-                else {
-                    std::cout << " ";
-                }
+                while (!iterWallHoriz.isNewLine());
 
-                std::cout << " ";
-
-                if (map->isWallPosValid(horizPos)) {
-                    std::cout << "  ";
-                }
+                std::cout << std::endl;
             }
         }
-
-        std::cout << std::endl;
     }
+
+    displayBorderRow(map, false);
 }

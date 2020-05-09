@@ -1,7 +1,5 @@
 #include "../../headers/env/Map.h"
 
-#include <cmath>
-
 Map::Map(size_t nbRows, size_t nbCols) {
     size = Position<size_t>(nbRows, nbCols);
     trueSize = Position<size_t>(Position<int>(size) * 2 + Position<int>(1, 1));
@@ -51,7 +49,7 @@ bool Map::isCellPosValid(const Position<float>& pos) const {
 
 Cell* Map::getCell(const Position<int> &pos) const {
     if (isCellPosValid(pos)) {
-        return (Cell*) &(content.at(pos.getRow()).at(pos.getCol()));
+        return (Cell*) content.at(pos.getRow()).at(pos.getCol());
     }
     else {
         throw std::range_error("getCell hors de la map");
@@ -102,9 +100,9 @@ bool Map::isWallPosValid(const Position<float>& pos) const {
     return valid;
 }
 
-Wall* Map::getWall(const Position<float> &pos) {
+Wall* Map::getWall(const Position<float> &pos) const {
     if (isWallPosValid(pos)) {
-        return (Wall*) &(content.at(pos.getRow()).at(pos.getCol()));
+        return (Wall*) content.at(pos.getRow()).at(pos.getCol());
     }
     else {
         throw std::range_error("getWall hors de la map");
@@ -136,11 +134,23 @@ size_t Map::getTrueNbCols() const {
     return trueSize.getCol();
 }
 
-Map_Iterator Map::begin() {
-    return Map_Iterator(this);
+Map_Iterator Map::iterCell() {
+    return Map_Iterator(this, false);
 }
 
-Map_Iterator Map::end() {
+Map_Iterator Map::iterWall() {
+    return Map_Iterator(this, true);
+}
+
+Map_Iterator Map::iterWallHoriz() {
+    return Map_Iterator(this, true, true);
+}
+
+Map_Iterator Map::iterWallVert() {
+    return Map_Iterator(this, true, false);
+}
+
+Map_Iterator Map::iterEnd() {
     return Map_Iterator(nullptr);
 }
 

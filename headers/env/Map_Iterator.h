@@ -1,6 +1,8 @@
 #ifndef MAZE_MAP_ITERATOR_H
 #define MAZE_MAP_ITERATOR_H
 
+#include <cmath>
+
 #include "Map.fwd.h"
 #include "MapElem.h"
 #include "Cell.h"
@@ -20,34 +22,51 @@ public:
     explicit Map_Iterator(Map *map);
 
     /**
+     * Constructeur
+     *
+     * @param map Map à itérer
+     * @param iterWall Itération selon les murs ou les cellules
+     */
+    Map_Iterator(Map *map, bool iterWall);
+
+    /**
+     * Constructeur
+     *
+     * @param map Map à itérer
+     * @param iterWall Itération selon les murs ou les cellules
+     * @param iterHoriz Itération selon les murs horizontaux
+     */
+    Map_Iterator(Map *map, bool iterWall, bool iterHoriz);
+
+    /**
      * Getter de ligne
      *
      * @return Ligne
      */
-    [[nodiscard]] int getRow() const;
+    [[nodiscard]] float getRow() const;
 
     /**
      * Getter de colonne
      *
      * @return Colonne
      */
-    [[nodiscard]] int getCol() const;
+    [[nodiscard]] float getCol() const;
 
     /**
      * Getter de position
      *
      * @return Position
      */
-    [[nodiscard]] Position<int> getPos() const;
+    [[nodiscard]] Position<float> getPos() const;
 
     /**
-     * Getter de cellule
+     * Getter, faire un cast lors de l'utilisation
      *
-     * @return Pointeur vers la cellule
+     * @return Pointeur vers un élément
      *
      * @throws invalid_argument Si la map est null, donc si itérateur de fin
      */
-    [[nodiscard]] Cell* getCell() const;
+    [[nodiscard]] void* get() const;
 
     /**
      * Nouvelle ligne ou non
@@ -97,6 +116,16 @@ public:
 
 private:
     /**
+     * Constructeur général
+     *
+     * @param map Map
+     * @param iterWall Itération selon les murs ou non
+     * @param iterHoriz Itération selon les murs horizontaux
+     * @param iterVert Itération selon les murs verticaux
+     */
+    Map_Iterator(Map *map, bool iterWall, bool iterHoriz, bool iterVert);
+
+    /**
      * Map de référence de l'itérateur
      */
     const Map *map;
@@ -104,7 +133,27 @@ private:
     /**
      * Position actuelle de l'itérateur
      */
-    Position<int> pos;
+    Position<float> pos;
+
+    /**
+     * Itération selon les murs ou les cellules
+     */
+    bool iterWall;
+
+    /**
+     * Itération selon les murs horizontaux
+     */
+    bool iterHoriz;
+
+    /**
+     * Itération selon les murs verticaux
+     */
+    bool iterVert;
+
+    /**
+     * Nouvelle ligne ou non
+     */
+    bool newLine;
 };
 
 #endif

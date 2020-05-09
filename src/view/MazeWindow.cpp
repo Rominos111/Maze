@@ -64,7 +64,7 @@ void MazeWindow::render() {
 
     shape.setOutlineThickness(0);
 
-    for (auto iter=map->begin(); iter!=map->end(); iter++) {
+    for (auto iter=map->iterCell(); iter!=map->iterEnd(); iter++) {
         Position<float> cellScreenPos = Position<float>(
                 (float) iter.getCol() * cellWidth,
                 (float) iter.getRow() * cellHeight

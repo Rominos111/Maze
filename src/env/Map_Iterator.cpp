@@ -1,30 +1,61 @@
 #include "../../headers/env/Map_Iterator.h"
+
+#include <cmath>
 #include "../../headers/env/Map.h"
 
-Map_Iterator::Map_Iterator(Map *map) : map(map), pos(0, 0) {}
+Map_Iterator::Map_Iterator(Map *map) :
+    Map_Iterator(map, false, false, false) {}
 
-int Map_Iterator::getRow() const {
+Map_Iterator::Map_Iterator(Map *map, bool iterWall) :
+    Map_Iterator(map, iterWall, true, true) {}
+
+Map_Iterator::Map_Iterator(Map *map, bool iterWall, bool iterHoriz) :
+    Map_Iterator(map, iterWall, iterHoriz, !iterHoriz) {}
+
+Map_Iterator::Map_Iterator(Map *map, bool iterWall, bool iterHoriz, bool iterVert) {
+    this->map = map;
+    this->iterWall = iterWall;
+    this->iterHoriz = iterHoriz;
+    this->iterVert = iterVert;
+    this->newLine = false;
+
+    if (iterWall) {
+        if (iterHoriz && (iterHoriz != iterVert)) {
+            this->pos = Position<float>(0.5, 0);
+        }
+        else {
+            this->pos = Position<float>(0, 0.5);
+        }
+    }
+}
+
+float Map_Iterator::getRow() const {
     return pos.getRow();
 }
 
-int Map_Iterator::getCol() const {
+float Map_Iterator::getCol() const {
     return pos.getCol();
 }
 
-Position<int> Map_Iterator::getPos() const {
+Position<float> Map_Iterator::getPos() const {
     return pos;
 }
 
-Cell *Map_Iterator::getCell() const {
+void* Map_Iterator::get() const {
     if (map == nullptr) {
         throw std::invalid_argument("Pointeur null");
     }
 
-    return map->getCell(pos);
+    if (iterWall) {
+        return map->getWall(pos);
+    }
+    else {
+        return map->getCell(pos);
+    }
 }
 
 bool Map_Iterator::isNewLine() const {
-    return (pos.getCol() == 0 && pos.getRow() != 0);
+    return newLine;
 }
 
 void Map_Iterator::next() {
@@ -32,15 +63,42 @@ void Map_Iterator::next() {
         throw std::invalid_argument("Pointeur null");
     }
 
-    int row = pos.getRow();
-    int col = pos.getCol() + 1;
+    float row = pos.getRow();
+    float col = pos.getCol() + 1;
 
-    if (col == (int) map->getNbCols()) {
-        col = 0;
-        row ++;
+    if (col > (float) map->getNbCols()-1) {
+        newLine = true;
+
+        if (iterWall) {
+            if (iterHoriz == iterVert) {
+                if (floorf(row) == row) {
+                    col = 0;
+                }
+                else {
+                    col = 0.5;
+                }
+
+                row += 0.5;
+            }
+            else if (iterVert) {
+                col = 0.5;
+                row ++;
+            }
+            else {
+                col = 0;
+                row ++;
+            }
+        }
+        else {
+            col = 0;
+            row ++;
+        }
+    }
+    else {
+        newLine = false;
     }
 
-    if (row == (int) map->getNbRows()) {
+    if (row > (float) map->getNbRows()-1) {
         map = nullptr;
     }
 

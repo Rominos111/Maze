@@ -2,6 +2,7 @@
 #define MAZE_MAP_H
 
 #include <vector>
+#include <cmath>
 
 #include "Map.fwd.h"
 #include "Map_Iterator.h"
@@ -133,7 +134,7 @@ public:
      *
      * @throws range_error Si position hors de la map
      */
-    [[nodiscard]] Wall* getWall(const Position<float> &pos);
+    [[nodiscard]] Wall* getWall(const Position<float> &pos) const;
 
     /**
      * Set un mur à partir d'un pointeur vers un mur
@@ -164,18 +165,39 @@ public:
     [[nodiscard]] Access operator () (const Position<int>& pos);
 
     /**
-     * Début de l'itérateur
+     * Début de l'itérateur des cellules
      *
      * @return Itérateur
      */
-    [[nodiscard]] Map_Iterator begin();
+    [[nodiscard]] Map_Iterator iterCell();
+
+    /**
+     * Début de l'itérateur des murs
+     *
+     * @return Itérateur
+     */
+    [[nodiscard]] Map_Iterator iterWall();
+
+    /**
+     * Début de l'itérateur des murs verticaux
+     *
+     * @return Itérateur
+     */
+    [[nodiscard]] Map_Iterator iterWallVert();
+
+    /**
+     * Début de l'itérateur des murs verticaux
+     *
+     * @return Itérateur
+     */
+    [[nodiscard]] Map_Iterator iterWallHoriz();
 
     /**
      * Fin de l'itérateur
      *
      * @return Itérateur
      */
-    [[nodiscard]] Map_Iterator end();
+    [[nodiscard]] Map_Iterator iterEnd();
 private:
     /**
      * Récupère le vrai nombre de lignes

@@ -7,7 +7,7 @@ Kruskal::Kruskal(Map *mapArg) {
 Kruskal::~Kruskal() = default;
 
 void Kruskal::generate() {
-    for (auto iter=map->begin(); iter!=map->end(); iter++) {
+    for (auto iter=map->iterCell(); iter!=map->iterEnd(); iter++) {
         Position<float> wallVert(iter.getPos());
         wallVert += Position<float>(0.5, 0);
 
