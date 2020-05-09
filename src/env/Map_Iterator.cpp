@@ -42,12 +42,34 @@ Position<float> Map_Iterator::getPos() const {
 }
 
 void* Map_Iterator::get() const {
+    if (iterWall) {
+        return getWall();
+    }
+    else {
+        return getCell();
+    }
+}
+
+Wall* Map_Iterator::getWall() const {
     if (map == nullptr) {
         throw std::invalid_argument("Pointeur null");
     }
 
     if (iterWall) {
         return map->getWall(pos);
+    }
+    else {
+        throw std::invalid_argument("getWall sur itérateur cellule");
+    }
+}
+
+Cell* Map_Iterator::getCell() const {
+    if (map == nullptr) {
+        throw std::invalid_argument("Pointeur null");
+    }
+
+    if (iterWall) {
+        throw std::invalid_argument("getCell sur itérateur wall");
     }
     else {
         return map->getCell(pos);

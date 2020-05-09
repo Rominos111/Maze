@@ -1,5 +1,5 @@
-Génération
+Génération Kruskal + Backtracking
 
-Affichage murs
+Résolution Backtracking + Right hand
 
 Affichage couleur cellules

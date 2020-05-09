@@ -64,24 +64,38 @@ void MazeWindow::render() {
 
     shape.setOutlineThickness(0);
 
-    for (auto iter=map->iterCell(); iter!=map->iterEnd(); iter++) {
-        Position<float> cellScreenPos = Position<float>(
-                (float) iter.getCol() * cellWidth,
-                (float) iter.getRow() * cellHeight
-                );
-
-        shape.setPosition(cellScreenPos.getX(), cellScreenPos.getY());
+    for (auto iter = map->iterCell(); iter != map->iterEnd(); iter++) {
+        shape.setPosition(iter.getCol()*cellWidth, iter.getRow()*cellHeight);
         shape.setFillColor(sf::Color::Green);
 
-        /*
-        sf::Vertex line[2];
-        line[0].position = sf::Vector2f(10, 0);
-        line[0].color  = sf::Color::Red;
-        line[1].position = sf::Vector2f(20, 0);
-        line[1].color = sf::Color::Red;
-         */
-
         window.draw(shape);
+    }
+
+    const float thickness = 5;
+
+    sf::RectangleShape line(sf::Vector2f(cellWidth + thickness, thickness));
+    line.setFillColor(sf::Color::Red);
+
+    for (auto iter = map->iterWallHoriz(); iter != map->iterEnd(); iter++) {
+        if (iter.getWall()->isFilled()) {
+            float x = cellWidth * iter.getCol() - thickness/2;
+            float y = cellHeight * ceilf(iter.getRow()) - thickness/2;
+
+            line.setPosition(sf::Vector2f(x, y));
+            window.draw(line);
+        }
+    }
+
+    line.setSize(sf::Vector2f(thickness, cellHeight + thickness));
+
+    for (auto iter = map->iterWallVert(); iter != map->iterEnd(); iter++) {
+        if (iter.getWall()->isFilled()) {
+            float x = cellWidth * ceilf(iter.getCol()) - thickness/2;
+            float y = cellHeight * iter.getRow() - thickness/2;
+
+            line.setPosition(sf::Vector2f(x, y));
+            window.draw(line);
+        }
     }
 
     window.display();

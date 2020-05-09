@@ -69,6 +69,24 @@ public:
     [[nodiscard]] void* get() const;
 
     /**
+     * Getter d'un mur
+     *
+     * @return Pointeur du mur
+     *
+     * @throws invalid_argument Si l'itérateur n'est pas sur un mur, ou itérateur de fin
+     */
+    [[nodiscard]] Wall* getWall() const;
+
+    /**
+     * Getter d'une cellule
+     *
+     * @return Pointeur de la cellule
+     *
+     * @throws invalid_argument Si l'itérateur n'est pas sur une cellule, ou itérateur de fin
+     */
+    [[nodiscard]] Cell* getCell() const;
+
+    /**
      * Nouvelle ligne ou non
      *
      * @return Nouvelle ligne
