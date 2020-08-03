@@ -1,6 +1,6 @@
 #include "../../headers/view/MazeWindow.h"
 
-MazeWindow::MazeWindow(Map *map, const Position<size_t> &size, const std::string& title) {
+MazeWindow::MazeWindow(Map *map, const Position<size_t> &size, const std::string &title) {
     window.create(sf::VideoMode(size.getWidth(), size.getHeight()), title);
     running = false;
     this->map = map;
@@ -25,7 +25,7 @@ int MazeWindow::run() {
 }
 
 void MazeWindow::processEvents() {
-    sf::Event event {};
+    sf::Event event{};
 
     while (window.pollEvent(event)) {
         switch (event.type) {
@@ -65,7 +65,7 @@ void MazeWindow::render() {
     shape.setOutlineThickness(0);
 
     for (auto iter = map->iterCell(); iter != map->iterEnd(); iter++) {
-        shape.setPosition(iter.getCol()*cellWidth, iter.getRow()*cellHeight);
+        shape.setPosition(iter.getCol() * cellWidth, iter.getRow() * cellHeight);
         shape.setFillColor(sf::Color::Green);
 
         window.draw(shape);
@@ -78,8 +78,8 @@ void MazeWindow::render() {
 
     for (auto iter = map->iterWallHoriz(); iter != map->iterEnd(); iter++) {
         if (iter.getWall()->isFilled()) {
-            float x = cellWidth * iter.getCol() - thickness/2;
-            float y = cellHeight * ceilf(iter.getRow()) - thickness/2;
+            float x = cellWidth * iter.getCol() - thickness / 2;
+            float y = cellHeight * ceilf(iter.getRow()) - thickness / 2;
 
             line.setPosition(sf::Vector2f(x, y));
             window.draw(line);
@@ -90,8 +90,8 @@ void MazeWindow::render() {
 
     for (auto iter = map->iterWallVert(); iter != map->iterEnd(); iter++) {
         if (iter.getWall()->isFilled()) {
-            float x = cellWidth * ceilf(iter.getCol()) - thickness/2;
-            float y = cellHeight * iter.getRow() - thickness/2;
+            float x = cellWidth * ceilf(iter.getCol()) - thickness / 2;
+            float y = cellHeight * iter.getRow() - thickness / 2;
 
             line.setPosition(sf::Vector2f(x, y));
             window.draw(line);
